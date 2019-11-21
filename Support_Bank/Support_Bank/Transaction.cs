@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Support_Bank
 {
-    public class Employee
+    class Transaction
     {
-        public string Name { get; set; }
-        public string Amount { get; set; }
-        public string Balance { get; set; }
+        public string NameFrom { get; set; }
+        public string NameTo { get; set; }
+        public string Balance { get; set; }   
     }
 }

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Employee.cs" />
+    <Compile Include="Transaction.cs" />
     <Compile Include="GetAmount.cs" />
     <Compile Include="GetReason.cs" />
     <Compile Include="GetOwesTo.cs" />
