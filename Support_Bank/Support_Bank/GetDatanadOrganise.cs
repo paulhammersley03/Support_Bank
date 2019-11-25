@@ -68,7 +68,9 @@ namespace Support_Bank
                             EmployeeList.Add(newEmployee);
                         }
                     }
-                    Regex CheckUserInput = new Regex(@"List\s\b(?<firstname>\w+)\s");
+                    Regex CheckUserInput = new Regex(@"List\s\b(?<firstname>)");
+                    
+                    string userNameInput2 = "";
 
                     if (userInstruction == "List All")
                     {
@@ -80,17 +82,23 @@ namespace Support_Bank
                     else if (CheckUserInput.IsMatch(userInstruction))
                     {
                         string[] ListName = userInstruction.Split(' ');//Creates array from user input.split string
+                        int userNameInputLength = ListName.Length;//Returns ListName array length
                         string userInstruction2 = ListName[0];//String to hold array item[1](Should Always be List)**
                         string userNameInput = ListName[1];//string to hold array item[2](Will be employees first name)**
-                        string userNameInput2 = ListName[2];//String to hold array item[3](will be employees second initial)**
-                                                            //**Can create an error                       
+
+                        if (userNameInputLength == 3)
+                        {
+                            userNameInput2 = " " + ListName[2];//String to hold array item[3](will be employees second initial)**
+                        }                                     
+
                         var existingEmployee = EmployeeList.Find(e => e.Name == userNameInput + " " + userNameInput2);
-                        var employeeName = userNameInput + " " + userNameInput2;
+                        var employeeName = userNameInput + userNameInput2;
                         var employeeTransactions = TransactionList.FindAll(e => e.NameFrom == employeeName || e.NameTo == employeeName);
 
                         foreach (var existingTransaction in employeeTransactions)
                         {
-                            Console.WriteLine($" {existingTransaction.Date} | {existingTransaction.NameFrom} | {existingTransaction.NameTo} | {existingTransaction.Reason}");
+                            Console.WriteLine($" {existingTransaction.Date} \t| {existingTransaction.NameFrom} \t| {existingTransaction.NameTo} \t| {existingTransaction.Reason}");
+                            // \t inputs a tab space
                         }
                         }
                         else
